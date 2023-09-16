@@ -1,0 +1,9 @@
+# .gitignore
+
+# Ignore everything
+*
+
+# Whitelist the files you want to track
+!README.md
+!docker-compose.yml
+!.gitignore
