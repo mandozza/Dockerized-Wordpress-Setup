@@ -19,13 +19,13 @@ This Docker Compose setup includes the following services:
 
 To start all services, use the following command:
 
-docker compose up -d
+docker-compose up -d
 
 ### Stopping the Services
 
 To stop all services, use the following command:
 
-docker compose down
+docker-compose down
 
 This command will stop and remove all the running containers.
 
