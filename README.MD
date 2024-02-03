@@ -74,4 +74,3 @@ This project allows you to configure WordPress variables using a `.env` file. Th
 This setup is designed to provide a local development environment for WordPress with tools for email testing and database management. Ensure you have Docker and Docker Compose installed on your machine to utilize this setup.
 
 **Note**: This is a development setup and should not be used in production. Always remember to manage and protect your passwords and other sensitive information properly.
-Now you can simply copy and paste this markdown content into your README.md file.
