@@ -1,57 +1,57 @@
-version: '3.9'
+version: "3.9"
 
 services:
-    db:
-        image: mysql:5.7
-        volumes:
-            - db_data:/var/lib/mysql
-        restart: always
-        environment:
-            MYSQL_ROOT_PASSWORD: dbpassword
-            MYSQL_DATABASE: wordpress_local
-            MYSQL_USER: wordpress_db_user
-            MYSQL_PASSWORD: wordpress_db_password
-        command: --innodb_buffer_pool_size=256M --innodb_log_buffer_size=8M
-        platform: linux/x86_64
+  db:
+    image: mariadb:latest
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: dbpassword
+      MYSQL_DATABASE: wordpress_local
+      MYSQL_USER: wordpress_db_user
+      MYSQL_PASSWORD: wordpress_db_password
+    command: --innodb-buffer-pool-size=256M --innodb-log-buffer-size=8M
+    platform: linux/x86_64
 
-    wordpress:
-        depends_on:
-            - db
-        image: wordpress:latest
-        env_file:
-            - .env
-        volumes:
-            - ./wordpress:/var/www/html
-        ports:
-            - '80:80'
-        restart: always
-        environment:
-            WORDPRESS_DB_HOST: db
-            WORDPRESS_DB_USER: wordpress_db_user
-            WORDPRESS_DB_PASSWORD: wordpress_db_password
-            WORDPRESS_DB_NAME: wordpress_local
-            WORDPRESS_CONFIG_EXTRA: |
-                define('WP_HOME', 'http://##WORDPRESS_URL##');
-                define('WP_SITEURL', 'http://##WORDPRESS_URL##');
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress:latest
+    env_file:
+      - .env
+    volumes:
+      - ./wordpress:/var/www/html
+    ports:
+      - "80:80"
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpress_db_user
+      WORDPRESS_DB_PASSWORD: wordpress_db_password
+      WORDPRESS_DB_NAME: wordpress_local
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_HOME', 'http://coursesite.test');
+        define('WP_SITEURL', 'http://coursesite.test');
 
-    mailhog:
-        image: mailhog/mailhog
-        ports:
-            - '8025:8025'
-        platform: linux/x86_64
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "8025:8025"
+    platform: linux/x86_64
 
-    phpmyadmin:
-        depends_on:
-            - db
-        image: phpmyadmin/phpmyadmin
-        restart: always
-        ports:
-            - '8082:80'
-        environment:
-            PMA_HOST: db
-            PMA_USER: wordpress_db_user
-            PMA_PASSWORD: wordpress_db_password
-        platform: linux/x86_64
+  phpmyadmin:
+    depends_on:
+      - db
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - "8082:80"
+    environment:
+      PMA_HOST: db
+      PMA_USER: wordpress_db_user
+      PMA_PASSWORD: wordpress_db_password
+    platform: linux/x86_64
 volumes:
-    db_data: {}
-    wordpress_data: {}
+  db_data: {}
+  wordpress_data: {}
