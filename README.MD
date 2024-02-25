@@ -38,7 +38,7 @@ This command will stop and remove all the running containers.
 - **db (MariaDB)**: This service uses a persistent volume `db_data` for storing the database.
 - **WordPress**: Configured to run on port 8000. It depends on the `db` service for its database.
 - **MailHog**: An email testing tool that runs on port 8025.
-- **phpMyAdmin**: Runs on port 8082 and provides a web interface for managing the MySQL database.
+- **phpMyAdmin**: Runs on port 8082 and provides a web interface for managing the MariaDB database.
 
 ### Environment
 
