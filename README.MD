@@ -2,10 +2,10 @@
 
 This Docker Compose setup includes the following services:
 
--   **MySQL Database**: A MySQL 5.7 instance.
--   **WordPress**: The latest version of WordPress connected to the MySQL instance.
--   **MailHog**: An email testing tool with a web and API interface.
--   **phpMyAdmin**: A web interface for managing the MySQL database.
+- **MariaDB**: The latest version of MariaDB.
+- **WordPress**: The latest version of WordPress connected to the MySQL instance.
+- **MailHog**: An email testing tool with a web and API interface.
+- **phpMyAdmin**: A web interface for managing the MariaDB database.
 
 ## How to Use
 
@@ -18,23 +18,27 @@ This Docker Compose setup includes the following services:
 ### Starting the Services
 
 To start all services, use the following command:
+
 ```
 docker-compose up -d
 ```
+
 ### Stopping the Services
 
 To stop all services, use the following command:
+
 ```
 docker-compose down
 ```
+
 This command will stop and remove all the running containers.
 
 ## Docker Compose Configuration
 
--   **db (MySQL 5.7)**: This service uses a persistent volume `db_data` for storing the database.
--   **WordPress**: Configured to run on port 8000. It depends on the `db` service for its database.
--   **MailHog**: An email testing tool that runs on port 8025.
--   **phpMyAdmin**: Runs on port 8082 and provides a web interface for managing the MySQL database.
+- **db (MariaDB)**: This service uses a persistent volume `db_data` for storing the database.
+- **WordPress**: Configured to run on port 8000. It depends on the `db` service for its database.
+- **MailHog**: An email testing tool that runs on port 8025.
+- **phpMyAdmin**: Runs on port 8082 and provides a web interface for managing the MySQL database.
 
 ### Environment
 
@@ -64,10 +68,10 @@ This project allows you to configure WordPress variables using a `.env` file. Th
 
 1. **Create or Edit the .env File:** In the root directory of your project, you can create or edit a file named `.env`. This file should contain key-value pairs in the format `VARIABLE_NAME=value`. For example:
 
-    ```dotenv
-    WORDPRESS_DEBUG=true
-    MY_CUSTOM_VARIABLE=custom_value
-    ```
+   ```dotenv
+   WORDPRESS_DEBUG=true
+   MY_CUSTOM_VARIABLE=custom_value
+   ```
 
 ## Further Information
 
